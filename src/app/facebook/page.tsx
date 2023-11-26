@@ -4,6 +4,8 @@ import { useRouter } from "next/navigation"
 /**useRouter là một trong những hook cung cấp bởi Next.js để giúp bạn quản lý định tuyến (routing) trong ứng dụng React 
  * của mình. Nó trả về một đối tượng router, từ đó bạn có thể trích xuất thông tin về địa chỉ URL hiện tại, tham số truy
  * vấn, và nhiều thông tin khác liên quan đến việc định tuyến trang. */
+import { Button } from 'react-bootstrap';
+
 
 const page = () => {
     const router = useRouter()
@@ -16,6 +18,7 @@ const page = () => {
         <div>
             Facebook Page
             <div>
+                <Button variant='primary'>Ấn vào đây</Button>
                 <button style={{ cursor: 'pointer' }} onClick={() => handleBtn()}>Trở về trang chủ</button>
             </div>
         </div>
