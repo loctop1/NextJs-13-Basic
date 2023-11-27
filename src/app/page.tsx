@@ -1,3 +1,5 @@
+'use client'
+
 import Image from 'next/image'
 import styles from './page.module.css'
 import Link from 'next/link'
@@ -5,8 +7,20 @@ import Link from 'next/link'
 import x from '@/styles/app.module.css'
 import y from '@/styles/loctop1.module.css'
 import AppTable from '@/components/app.table'
+import { useEffect } from 'react'
 
 export default function Home() {
+
+  // Fetch API
+  useEffect(() => {
+    const fetchData = async () => {
+      const res = await fetch('http://localhost:8000/blogs')
+      const data = await res.json();
+      console.log('check response', data);
+    }
+    fetchData();
+  }, [])
+
   return (
     <div>
       <ul>
@@ -23,7 +37,7 @@ export default function Home() {
             Youtube
           </Link>
         </li>
-        <li>
+        <li style={{ margin: '20px 0' }}>
           <Link href={'/tiktok'}>
             TikTok
           </Link>
