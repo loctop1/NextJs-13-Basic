@@ -4,6 +4,7 @@ import Link from 'next/link'
 // Kết hợp 2 class css với nhau
 import x from '@/styles/app.module.css'
 import y from '@/styles/loctop1.module.css'
+import AppTable from '@/components/app.table'
 
 export default function Home() {
   return (
@@ -28,6 +29,7 @@ export default function Home() {
           </Link>
         </li>
       </ul>
+      <AppTable />
     </div>
   )
 }
