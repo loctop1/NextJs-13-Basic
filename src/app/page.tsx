@@ -11,6 +11,8 @@ import { useEffect } from 'react'
 import useSWR from 'swr'
 /**Hook này thường được sử dụng trong ứng dụng React để lấy và quản lý dữ liệu với sự tập trung vào việc cung cấp trải 
  * nghiệm người dùng tốt thông qua các tính năng như caching và revalidation. */
+import Button from 'react-bootstrap/Button';
+import Spinner from 'react-bootstrap/Spinner';
 
 export default function Home() {
   const fetcher = (url: string) => fetch(url).then((res) => res.json());
@@ -35,7 +37,21 @@ export default function Home() {
   );
   /**Kết quả của hook useSWR được giải tỏa thành ba biến: data (dữ liệu đã lấy), error (bất kỳ lỗi nào xảy ra trong quá 
    * trình lấy dữ liệu), và isLoading (một giá trị boolean chỉ ra liệu dữ liệu đang được lấy hay không). */
-  console.log('check data: ', data)
+
+  if (!data) {
+    return (
+      <Button variant="primary" disabled>
+        <Spinner
+          as="span"
+          animation="border"
+          size="sm"
+          role="status"
+          aria-hidden="true"
+        />
+        Đang tải...
+      </Button>
+    )
+  }
 
   return (
     <div>
@@ -62,7 +78,7 @@ export default function Home() {
           </Link>
         </li>
       </ul>
-      <AppTable />
+      <AppTable blogs={data} />
     </div>
   )
 }
