@@ -78,7 +78,10 @@ export default function Home() {
           </Link>
         </li>
       </ul>
-      <AppTable blogs={data} />
+      <AppTable
+        //Sắp xếp Id giảm dần
+        blogs={data?.sort((a: any, b: any) => b.id - a.id)}
+      />
     </div>
   )
 }

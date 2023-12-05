@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { toast } from 'react-toastify';
+import { mutate } from 'swr';
 
 interface IProps {
     showModalCreate: boolean;
@@ -43,6 +44,8 @@ function CreateModal(props: IProps) {
                 if (res) {
                     toast.success('Thêm danh sách thành công!')
                     handleCloseModal();
+                    mutate('http://localhost:8000/blogs')
+                    //Hàm mutate dùng để hiển thị lại data khi thêm dữ liễu xong
                 }
             })
         // toast.success('Thêm danh sách thành công!')
