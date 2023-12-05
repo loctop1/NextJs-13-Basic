@@ -4,6 +4,7 @@ import { Button } from 'react-bootstrap';
 import CreateModal from './create.modal';
 import { useState } from 'react';
 import UpdateModal from './update.modal';
+import Link from 'next/link';
 
 interface IProps {
     /**Đây là interface mới, IProps, có một thuộc tính blogs kiểu là một mảng các đối tượng thuộc interface IBLog. */
@@ -42,7 +43,9 @@ const AppTable = (props: IProps) => {
                                 <td>{item.title}</td>
                                 <td>{item.author}</td>
                                 <td>
-                                    <Button>Xem chi tiết</Button>
+                                    <Button>
+                                        <Link href={`/blogs/${item.id}`} className='text-white text-decoration-none fw-bold'>Xem chi tiết</Link>
+                                    </Button>
                                     <Button variant='warning' className='mx-3'
                                         onClick={() => {
                                             setBlog(item);
