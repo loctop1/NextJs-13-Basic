@@ -1,7 +1,7 @@
 
 const AppFooter = () => {
     return (
-        <div style={{
+        <div className="my-3" style={{
             background: "black",
             textAlign: "center",
             padding: "5px 0",
