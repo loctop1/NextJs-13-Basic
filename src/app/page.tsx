@@ -1,4 +1,4 @@
-'use client'
+
 
 import Image from 'next/image'
 import styles from './page.module.css'
@@ -10,6 +10,12 @@ import AppTable from '@/components/app.table'
 import { useEffect } from 'react'
 import Button from 'react-bootstrap/Button';
 import Spinner from 'react-bootstrap/Spinner';
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Trang chu',
+  description: 'Description',
+}
 
 export default function Home() {
 
