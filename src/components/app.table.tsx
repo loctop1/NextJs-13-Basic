@@ -5,6 +5,8 @@ import CreateModal from './create.modal';
 import { useState } from 'react';
 import UpdateModal from './update.modal';
 import Link from 'next/link';
+import { toast } from 'react-toastify';
+import { mutate } from 'swr';
 
 interface IProps {
     /**Đây là interface mới, IProps, có một thuộc tính blogs kiểu là một mảng các đối tượng thuộc interface IBLog. */
@@ -18,6 +20,26 @@ const AppTable = (props: IProps) => {
     const [blog, setBlog] = useState<IBLog | null>(null);
     const [showModalCreate, setShowModalCreate] = useState<boolean>(false);
     const [showModalUpdate, setShowModalUpdate] = useState<boolean>(false);
+
+    // Delete Api
+    const handleDeleteBlog = (id: number) => {
+        if (confirm(`Ban co muon xoa (id = ${id})`)) {
+            fetch(`http://localhost:8000/blogs/${id}`, {
+                method: 'DELETE',
+                headers: {
+                    'Accept': 'application/json, text/plain, */*',
+                    'Content-Type': 'application/json'
+                },
+
+            }).then(res => res.json())
+                .then(res => {
+                    if (res) {
+                        toast.success("Xoa Blog thanh cong");
+                        mutate("http://localhost:8000/blogs")
+                    }
+                });
+        }
+    }
     return (
         <>
             <div className='mb-3' style={{ display: 'flex', justifyContent: 'space-between' }}>
@@ -52,7 +74,7 @@ const AppTable = (props: IProps) => {
                                             setShowModalUpdate(true);
                                         }}
                                     >Sửa</Button>
-                                    <Button variant='danger'>Xóa</Button>
+                                    <Button variant='danger' onClick={() => handleDeleteBlog(item.id)}>Xóa</Button>
                                 </td>
                             </tr>
                         )
